@@ -1,7 +1,8 @@
 # Range-Kata-App
 
 ## Index
-1. [How to Install](#how-to-install)
+1. [Main](./main.py)
+2. [How to Install](#how-to-install)
 
 ## How to Install
 
