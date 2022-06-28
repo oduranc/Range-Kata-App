@@ -1,4 +1,4 @@
-from range_oduranc import Range
+from Range_oduranc import Range
 
 def Menu(R1):
       print("1. Obtener todos los puntos." + 
@@ -10,21 +10,22 @@ def Menu(R1):
       Option(option, R1)
 
 def Option(opt, R1):
-      match opt:
-            case 1:
-                  result = Range.getAllPoints(R1)
-                  pass
-            case 2:
-                  result = Range.endPoints(R1)
-                  pass
-            case 3:
-                  nums = []
-                  nums = [int(number) for number in input("Ingresa los números separados por espacio: ").split()]
-                  result = Range.contains(R1, list(nums))
-                  pass
-            case 4:
-                  pass
-      print(result)
+    if opt == 1:
+        result = Range.getAllPoints(R1)
+    elif opt == 2:
+        result = Range.endpoint(R1)
+    elif opt == 3:
+        nums = []
+        nums = [number for number in input("Ingresa los números separados por espacio: ").split(" ")]
+        convertedNums = map(lambda number: int(number), nums)
+        
+        result = Range.contains(R1, int(convertedNums))
+    elif opt == 4:
+        insertedRange = input("Ingrese un nuevo rango")
+        R2 = Range(insertedRange)
+        result = Range.containsRange(R1, R2)
+        
+    print(result)
 
 
 strR1 = input("Introduzca un rango: ")
