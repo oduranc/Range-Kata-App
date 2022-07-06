@@ -2,9 +2,10 @@
 
 ## Index
 1. [Main](./main.py)
-2. [How to Install](#how-to-install)
+2. [How to Run Python File](#how-to-run-python-file)
+3. [How we uploaded to Chocolatey](#how-we-uploaded-to-chocolatey)
 
-## How to Install
+## How to Run Python File
 
 1. Check if you have the latest version of Python and pip installed in your computer.
 
@@ -17,3 +18,32 @@
 5. After installation is completed, ```git clone``` this repository.
 
 6. Then, all you have to do to init the software is to ```python main.py```, ```python3 main.py``` or ```pip3 main.py```. If you followed step 3 then ```python3 main.py``` should work for you.
+
+## How we uploaded to Chocolatey
+
+1. We
+
+1. First, we installed Chocolatey using the guide from this link: https://chocolatey.org/install
+
+2. Then, we opened Powershell in Administrator mode.
+
+3. After that, we created a new package by ```choco new rangeoscarrafael```
+
+4. Then, ```cd rangeoscarrafael```
+
+5. Opened the current folder on **VSCode** by ```code .```
+
+6. Deleted *ReadMe.md* and *_TODO.txt* from that folder. Then, inside tools folder we deleted *chocolateybeforemodify.ps1*, *chocolateyuninstall.ps1*, *LICENSE.txt* and *VERIFICATION.txt*.
+
+7. We edited *package-name.nuspec* with the actual data of our project.
+
+8. On tools folder, we edited *chocolateyinstall.ps1* to look like this:
+```
+$name = "rangeOscarRafael"
+$toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+$path = Join-Path $toolsDir 'main.exe'
+
+Install-BinFile -name $name -path $path
+```
+
+9. And, as explained in previous step, we added our .exe file into tools folder.
