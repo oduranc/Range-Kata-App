@@ -21,7 +21,6 @@
 
 ## How we uploaded to Chocolatey
 
-1. We
 
 1. First, we installed Chocolatey using the guide from this link: https://chocolatey.org/install
 
@@ -46,4 +45,22 @@ $path = Join-Path $toolsDir 'main.exe'
 Install-BinFile -name $name -path $path
 ```
 
-9. And, as explained in previous step, we added our .exe file into tools folder.
+9. In that moment, we needed to add the .exe of our app in the same folder as *chocolateyinstall.ps1*. For doing so we needed to install pyinstaller.  
+
+10. In your powershell, type ```pip install pyinstaller```.  
+
+11. The, convert the file .py to .exe with the following command: ```pyinstaller [filename].py```.  
+
+12. And, as explained in previous step, we added our .exe file into tools folder.
+
+13. To be able to create the package, we run the command ```choco pack```. It created an .nupkg file.  
+
+14. If you want test that the package is working, you can install it in the same folder with ```choco install [package_id] -dv .```. 
+
+15. If you want to Upload the package in chocolatey.org, you will need to create an [account](https://community.chocolatey.org/account/Register).  
+
+16. At the end of the proccess, they will asign you a key that you should set in your terminal with   ```choco apikey -k [API_KEY_HERE] -source https://push.chocolatey.org/```. It will let then know wich user is trying to upload what package, by also giving an extra layer of security.    
+
+17. Then, set the terminal in the location of your package. If you only have one .nupkg file in that destination, you can use the command ```choco push --source https://push.chocolatey.org/```.
+
+Your package will be uploaded by this point. To be fully accesible, the page will create some tests in orther to confirm it's actually secure. By that moment you will have your package fully open and so anyone will be able to download it.
